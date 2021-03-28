@@ -9,7 +9,7 @@ management, so you must install it on your system:
 $ sudo apt install pipenv
 ```
 
-Then, install requirements (both windows and other OS):
+Then, install requirements:
 
 ```bash
 $ pipenv install
