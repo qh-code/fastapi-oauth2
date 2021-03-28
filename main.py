@@ -39,6 +39,6 @@ def read_items(current_user_id: str = Depends(get_current_user_id)):
     ]
 
 
-@app.get('/access-token-payload', response_model=Mapping[str, str])
+@app.get('/access-token-payload-test', response_model=Mapping[str, str])
 def read_access_token(token_payload: Mapping[str, Any] = Depends(get_access_token_payload)):
     return {claim: str(token_payload[claim]) for claim in token_payload}
