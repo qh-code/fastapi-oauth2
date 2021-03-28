@@ -8,10 +8,13 @@ fastapi = "*"
 uvicorn = "*"
 httpx = "*"
 okta-jwt = "*"
-python-jose = {extras = ["cryptography"], version = "*"}
 pydantic = "*"
 
 [dev-packages]
 
 [requires]
-python_version = "3.8"
+python_version = "3"
+
+[packages.python-jose]
+extras = [ "cryptography",]
+version = "*"
