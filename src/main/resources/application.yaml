@@ -1,0 +1,13 @@
+aws-region: "us-east-2"
+cognito-pool-id: "us-east-2_8o6slCXjB"
+
+cognito-roles: "cognito:groups"
+
+spring.security.oauth2.resourceserver.jwt:
+  issuer-uri: https://cognito-idp.${aws-region}.amazonaws.com/${cognito-pool-id}
+
+
+#debug: true
+#logging:
+#  level:
+#    org.springframework.security: debug
