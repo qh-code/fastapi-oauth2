@@ -21,7 +21,7 @@ class SwaggerConfiguration {
 
     private ApiInfo apiInfo() {
         return new ApiInfo("Sample rest API",
-                "Provides REST API for message and user",
+                "Provides REST API for user token",
                 "1.0",
                 null,
                 new Contact("Lukasz Tomala", null, "lukasz.tomala@xclinical.com"),
@@ -38,7 +38,7 @@ class SwaggerConfiguration {
                 .securitySchemes(List.of(apiKey()))
                 .select()
                 .apis(RequestHandlerSelectors.any())
-                .paths(PathSelectors.ant("/api/**"))
+                .paths(PathSelectors.ant("/access-token-payload-test"))
                 .build();
     }
 
