@@ -10,10 +10,10 @@ import java.util.stream.Collectors;
 
 @RestController
 //@PreAuthorize("hasAuthority('hello_authority')")
-@Api(tags = "UserToken")
-class TokenInfoController {
+@Api(tags = "TokenPayload")
+class TokenPayloadController {
     @GetMapping("/access-token-payload-test")
-    String helloWorld(@AuthenticationPrincipal Jwt principal) {
+    String info(@AuthenticationPrincipal Jwt principal) {
         return principal.getClaims().keySet().stream()
                 .map(key ->
                         formatKeyAndValue(key, String.valueOf(principal.getClaims().get(key)))
