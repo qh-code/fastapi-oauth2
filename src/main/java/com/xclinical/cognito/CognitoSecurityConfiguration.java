@@ -1,5 +1,6 @@
 package com.xclinical.cognito;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
@@ -11,6 +12,8 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.Collection;
 import java.util.List;
@@ -21,13 +24,29 @@ import java.util.stream.Stream;
 @EnableWebSecurity
 class CognitoSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
+    @Bean
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/access-token-payload-test")
+                        .allowedOrigins("http://localhost:8080")
+                        .allowedHeaders("*")
+                        .allowedMethods("GET")
+                        .allowCredentials(true);
+            }
+        };
+    }
+
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**").permitAll()
                 .and()
+                .cors()
+                .and()
                 .authorizeRequests()
-                .antMatchers("/api/**").authenticated()
+                .antMatchers("/access-token-payload-test").authenticated()
                 .and().csrf().disable()
                 .oauth2ResourceServer().jwt()
                 .jwtAuthenticationConverter(

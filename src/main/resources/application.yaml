@@ -1,7 +1,8 @@
 aws-region: "us-east-2"
-cognito-pool-id: "us-east-2_8o6slCXjB"
+cognito-pool-id: "us-east-2_CEDW1OT68"
 
-cognito-roles: "cognito:groups"
+server:
+  port: 8000
 
 spring.security.oauth2.resourceserver.jwt:
   issuer-uri: https://cognito-idp.${aws-region}.amazonaws.com/${cognito-pool-id}
