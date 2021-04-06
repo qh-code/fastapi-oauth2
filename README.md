@@ -30,20 +30,20 @@ In command line, go to `fastapi-oauth2` dir and then execute `mvn spring-boot:ru
 
 ## Endpoints
 
-`/api/messages/hello` - returns `Hello from messages REST API` message when run with valid Bearer token
+`/access-token-payload-test` - returns `claim details` message when run with valid Bearer token
 
 When you call endpoint without Bearer token, example:
 
-`curl -o /dev/null -s -w "%{http_code}\n" http://localhost:8080/api/messages/hello`
+`curl -o /dev/null -s -w "%{http_code}\n" http://localhost:8000/access-token-payload-test`
 
 Then `401` should be returned because you didn't pass Bearer token in Header
 
 When you replace `<bearer token>` with valid token and call
 
-`curl -o /dev/null -s -w "%{http_code}\n" -H "Authorization: Bearer <bearer token>" http://localhost:8080/api/messages/hello`
+`curl -o /dev/null -s -w "%{http_code}\n" -H "Authorization: Bearer <bearer token>" http://localhost:8000/access-token-payload-test`
 
 Then `200` should be returned
 
 ## Swagger
 
-Swagger endpoint `http://localhost:8080/swagger-ui/`
+Swagger endpoint `http://localhost:8000/swagger-ui/`
