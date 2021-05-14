@@ -36,7 +36,8 @@ _JWKS_CACHE = {}
 _oauth2_scheme = OAuth2AuthorizationCodeBearer(
     # scopes={"api://c70e0ac4-7775-4615-b1a0-76eb1ca838a0/Items.Read.All": "Read All Items"},
     authorizationUrl=_AUTHORIZE_URL,
-    tokenUrl=_TOKEN_URL)
+    tokenUrl=_TOKEN_URL,
+    refreshUrl=_TOKEN_URL)
 
 
 def _validate_token(access_token: str) -> Mapping[str, str]:
